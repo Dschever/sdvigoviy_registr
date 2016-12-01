@@ -86,6 +86,6 @@ function CreatePin(i, registr, tr){
     return arr;
 };
 
-exports.connect = function(opts, i){
-	return new SuperRegistr(opts);
+exports.connect = function(opts, i, tr){
+	return new SuperRegistr(opts, i, tr);
 }
