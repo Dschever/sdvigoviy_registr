@@ -56,7 +56,15 @@ SuperRegistr.prototype.Reset = function (){
 	this._st.write(1);
 	this._st.write(0);
     this._mr.write(1);
-  };
+  }else if(this._mr==undefined){
+  	for (var i=0; this._arr_pin.length>i; i++) {
+  		this._arr_pin[i]=0;
+  	};
+  	this._st.write(1);
+	this._st.write(0);
+  }else{
+  	console.log("Error  | mr |  Error");
+  }
 };
 
 SuperRegistr.prototype.HI_Z = function (){
