@@ -13,8 +13,8 @@ var SuperRegistr = function(opts, i, tr){
    	if(this._oe!=undefined) this._oe.write(0);
 };
 var SuperPin = function(p, registr){
-  this._pin = p;
-  this._registr = registr;
+	this._pin = p;
+	this._registr = registr;
 };
 SuperRegistr.prototype.PinUpdate = function (){
 	for (var i = this._arr_pin.length-1; i >=0 ; i--) {
