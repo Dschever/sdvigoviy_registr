@@ -68,6 +68,7 @@ SuperRegistr.prototype.Reset = function (){
 };
 
 SuperRegistr.prototype.HI_Z = function (){
+if(this._mr!=undefined){
 	if(this._hi_z == false){
 		this._hi_z = true;
 		this._oe.write(1);
@@ -75,6 +76,9 @@ SuperRegistr.prototype.HI_Z = function (){
 		this._hi_z = false;
 		this._oe.write(0);
 	}
+}else{
+	console.log("Error  | oe |  Error");
+}
 };
 
 function CreatePin(i, registr, tr){
