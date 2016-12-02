@@ -88,8 +88,8 @@ function create_pin(i, registr, tr){
   		if(tr == true)global["Q"+p] = new SuperPin(p, registr); 
 	}
 	return arr_pin;
-};
+}
 
 exports.connect = function(opts, i, tr){
 	return new SuperRegistr(opts, i, tr);
-}
+};
