@@ -9,6 +9,7 @@ SuperWorm.prototype.Start = function (){
   var arr = this._arr;
   var time = this._time;
   var speed = this._speed;
+  var www = this;
   function Hz(){
     arr[n].write(1);
   //setTimeout(function(){
@@ -21,7 +22,7 @@ SuperWorm.prototype.Start = function (){
     arr[y].write(0);
     n=(n+1)%10;
   //}, speed/10); 
-    time = setTimeout(Hz, speed);
+    time = setTimeout(Hz, www._speed);
   };
   Hz();
 };
