@@ -1,13 +1,13 @@
-var SuperRegistr = function(opts, i, tr){
+var SuperRegistr = function(opts, i, tr){, , , , 
 	opts = opts || {};
     	i = i || 1;
    	tr = tr || true;
     	this._arr_pin = create_pin(i, this, tr);
-	this._ds = opts.ds;
-	this._st = opts.st;
-  	this._sh = opts.sh;
-	this._mr = opts.mr;
-  	this._oe = opts.oe;
+	this._ds = opts.DataPin;
+	this._st = opts.LatchPin;
+  	this._sh = opts.ClockPin;
+	this._mr = opts.ResetPin;
+  	this._oe = opts.OutputEnablePin;
 	this._hi_z = false;
     	if(this._mr!=undefined) this._mr.write(1);
    	if(this._oe!=undefined) this._oe.write(0);
@@ -50,21 +50,26 @@ SuperPin.prototype.write = function(on_off){
 	}
 };
 
+SuperPin.prototype.toggle = function(){
+	this._registr._arr_pin[this._pin]=!this._registr._arr_pin[this._pin];
+	this._registr.PinUpdate();
+};
+
 SuperRegistr.prototype.Reset = function (){
-  if(this._mr!=undefined){
-    	this._mr.write(0);
-	this._st.write(1);
-	this._st.write(0);
-    	this._mr.write(1);
-  }else if(this._mr==undefined){
-  	for (var i=0; this._arr_pin.length>i; i++) {
+	for (var i=0; this._arr_pin.length>i; i++) {
   		this._arr_pin[i] = 0;
   	}
-  	this._st.write(1);
-	this._st.write(0);
-  }else{
-  	console.log("Error  | mr |  Error");
-  }
+	if(this._mr!=undefined){
+    		this._mr.write(0);
+		this._st.write(1);
+		this._st.write(0);
+    		this._mr.write(1);
+  	}else if(this._mr==undefined){
+  		this._st.write(1);
+		this._st.write(0);
+ 	}else{
+  		console.log("Error  | mr |  Error");
+ 	}
 };
 
 SuperRegistr.prototype.Hi_z = function (){
